@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Bird.h"
 #include "Block.h"
+#include <random>
 
 class Game
 {
@@ -33,6 +34,9 @@ public:
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
 	void Go();
+
+	void CallBlock();
+
 private:
 	void ComposeFrame();
 	void UpdateModel();
@@ -44,10 +48,14 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	std::random_device rd;
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> yDist;
+
 	Bird bird;
 	Block blockUp;
-	Block blcokDown;
-	int gap = 120;
+	Block blockDown;
+	int gap = 200;
 
 	int gameSpeed = 0;
 	int gameSpeedMax = 5;

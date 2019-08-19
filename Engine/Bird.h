@@ -9,11 +9,15 @@ public:
 	void DrawBird(Graphics& gfx);
 	void Move();
 	void ClampToScreen();
+	int BirdXSize();
+	int BirdYSize();
+	int GetBirdX();
+	int GetBirdY();
 private:
 	int x;
-	int y;
+	float y;
 	static constexpr int width = 70;
 	static constexpr int height = 53;
-	int vy = 5;
+	float vy = 1;
 	bool enable = false;
 };

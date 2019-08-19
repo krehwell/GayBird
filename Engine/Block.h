@@ -6,17 +6,21 @@ class Block
 {
 public:
 	void InitBlock(int _height);
-	void DrawBlock(Graphics& gfx);
+	void DrawBlockUp(Graphics& gfx);
+	void DrawBlockDown(Graphics& gfx);
 	void MoveBlock();
 	void BlockClamp();
-	void CollusionDetect(Bird bird);
-
+	bool CollusionDetect(Bird bird);
+	bool GetRegenerate();
+	int GetX();
 	~Block();
 private:
 	int x = Graphics::ScreenWidth;
 	int y = 0;
 	int height;
-	int blockMove = 5;
+	int blockMove = 1;
 	int width = 100;
+	bool dead=false;
+	bool regenerate = false;
 };
 

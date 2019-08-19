@@ -20,18 +20,16 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include <random>
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
-	bird(200,300)
+	wnd(wnd),
+	gfx(wnd),
+	bird(200, 300),
+	rng(rd()),
+	yDist(60, 320)
 {
-	std::random_device rd;
-	std::mt19937 rng(rd());
-	std::uniform_int_distribution<int> yDist(60, 320);
-	blockUp.InitBlock(yDist(rng));
+	CallBlock();
 }
 
 void Game::Go()
@@ -42,25 +40,46 @@ void Game::Go()
 	gfx.EndFrame();
 }
 
+void Game::CallBlock()
+{
+	int firstInitY = yDist(rng);
+	blockUp.InitBlock(firstInitY);
+	blockDown.InitBlock(firstInitY + gap);
+}
+
 void Game::UpdateModel()
 {
-	if (gameSpeed > gameSpeedMax)
-	{
-		gameSpeed = 0;
-		bird.Move();
-		bird.ClampToScreen();
-
-		blockUp.MoveBlock();
-		blockUp.BlockClamp();
-	}
-	else
-	{
-		gameSpeed++;
-	}
+	//if (gameSpeed > gameSpeedMax)
+	//{
+		if (!blockUp.CollusionDetect(bird) && !blockDown.CollusionDetect(bird))
+		{
+			gameSpeed = 0;
+			bird.Move();
+			bird.ClampToScreen();
+			
+			if (!blockUp.GetRegenerate())
+			{
+				blockUp.MoveBlock();
+				blockUp.BlockClamp();
+			}
+			if (!blockDown.GetRegenerate())
+			{
+				blockDown.MoveBlock();
+				blockDown.BlockClamp();
+			}
+		}
+	//}
+	//else
+	//{
+	//	gameSpeed++;
+	//}
 }
 
 void Game::ComposeFrame()
 {
 	bird.DrawBird(gfx);
-	blockUp.DrawBlock(gfx);
+	blockUp.DrawBlockUp(gfx);
+	blockDown.DrawBlockDown(gfx);
+
+	//gfx.DrawRect(50, firstInitY, 140, Graphics::ScreenHeight, Colors::Gray);
 }

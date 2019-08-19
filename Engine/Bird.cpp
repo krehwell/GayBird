@@ -5,7 +5,7 @@
 Bird::Bird(int _x, int _y)
 {
 	x = _x;
-	y = _y;
+	y = float(_y);
 }
 
 void Bird::DrawBird(Graphics& gfx)
@@ -2745,12 +2745,12 @@ void Bird::Move()
 {
 	if(GetAsyncKeyState(VK_SPACE))
 	{
-			y -= 30;
-			vy = 3;
+			y -= 3;
+			vy = 2;
 	}
 	else
 	{
-		vy += 5;
+		vy += vy*0.06;
 		y += vy;
 	}
 }
@@ -2766,5 +2766,25 @@ void Bird::ClampToScreen()
 	{
 		y = 0;
 	}
+}
+
+int Bird::BirdXSize()
+{
+	return x + width;
+}
+
+int Bird::BirdYSize()
+{
+	return y+height;
+}
+
+int Bird::GetBirdX()
+{
+	return x;
+}
+
+int Bird::GetBirdY()
+{
+	return y;
 }
 
