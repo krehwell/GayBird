@@ -55,6 +55,8 @@ private:
 	Bird bird;
 	Block blockUp;
 	Block blockDown;
+	Block block1Up;
+	Block block1Down;
 	int gap = 200;
 
 	int gameSpeed = 0;

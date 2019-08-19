@@ -1,5 +1,5 @@
 #include "Block.h"
-
+#include <random>
 void Block::InitBlock(int _height)
 {
 	height = _height;
@@ -47,8 +47,9 @@ void Block::BlockClamp()
 	}
 	if (width <= 0)
 	{
-		width = 0;
-		Block::~Block();
+		width = initWidth;
+		x = Graphics::ScreenWidth;
+		//Block::~Block();
 	}
 }
 
@@ -67,6 +68,11 @@ bool Block::CollusionDetect(Bird bird)
 bool Block::GetRegenerate()
 {
 	return regenerate;
+}
+
+int Block::getBlockWidth()
+{
+	return width;
 }
 
 int Block::GetX()
