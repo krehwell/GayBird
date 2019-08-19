@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Bird.h"
+#include "Block.h"
 
 class Game
 {
@@ -44,6 +45,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Bird bird;
+	Block block;
 
 	int gameSpeed = 0;
 	int gameSpeedMax = 5;

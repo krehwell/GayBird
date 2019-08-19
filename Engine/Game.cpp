@@ -27,6 +27,7 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	bird(180, 300)
 {
+	block.InitBlock(650, 190);
 }
 
 void Game::Go()
@@ -49,6 +50,7 @@ void Game::UpdateModel()
 	{
 		gameSpeed++;
 	}
+	block.DrawBlock(gfx);
 }
 
 void Game::ComposeFrame()
