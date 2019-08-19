@@ -45,7 +45,9 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Bird bird;
-	Block block;
+	Block blockUp;
+	Block blcokDown;
+	int gap = 120;
 
 	int gameSpeed = 0;
 	int gameSpeedMax = 5;

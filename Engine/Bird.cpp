@@ -2750,7 +2750,7 @@ void Bird::Move()
 	}
 	else
 	{
-		vy += 7;
+		vy += 5;
 		y += vy;
 	}
 }

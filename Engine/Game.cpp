@@ -20,14 +20,18 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include <random>
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	bird(180, 300)
+	bird(200,300)
 {
-	block.InitBlock(650, 190);
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::uniform_int_distribution<int> yDist(60, 320);
+	blockUp.InitBlock(yDist(rng));
 }
 
 void Game::Go()
@@ -45,15 +49,18 @@ void Game::UpdateModel()
 		gameSpeed = 0;
 		bird.Move();
 		bird.ClampToScreen();
+
+		blockUp.MoveBlock();
+		blockUp.BlockClamp();
 	}
 	else
 	{
 		gameSpeed++;
 	}
-	block.DrawBlock(gfx);
 }
 
 void Game::ComposeFrame()
 {
 	bird.DrawBird(gfx);
+	blockUp.DrawBlock(gfx);
 }
