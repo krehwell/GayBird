@@ -12,6 +12,7 @@ public:
 	void BlockClamp();
 	bool CollusionDetect(Bird bird);
 	bool GetRegenerate();
+	void SetRegenerate(bool allow);
 	int GetX();
 	~Block();
 private:

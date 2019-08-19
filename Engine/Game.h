@@ -53,8 +53,9 @@ private:
 	std::uniform_int_distribution<int> yDist;
 
 	Bird bird;
-	Block blockUp;
-	Block blockDown;
+	static constexpr int totalBlock = 2;
+	Block blockUp[totalBlock];
+	Block blockDown[totalBlock];
 	int gap = 200;
 
 	int gameSpeed = 0;

@@ -30,6 +30,7 @@ void Block::DrawBlockDown(Graphics & gfx)
 	else
 	{
 		gfx.DrawRect(x, y, x+width, Graphics::ScreenHeight, Colors::Green);
+		regenerate = false;
 	}
 }
 
@@ -67,6 +68,11 @@ bool Block::CollusionDetect(Bird bird)
 bool Block::GetRegenerate()
 {
 	return regenerate;
+}
+
+void Block::SetRegenerate(bool allow)
+{
+	regenerate = allow;
 }
 
 int Block::GetX()
