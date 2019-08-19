@@ -20,4 +20,5 @@ private:
 	static constexpr int height = 53;
 	float vy = 1;
 	bool enable = false;
+	bool inhibit = false;
 };

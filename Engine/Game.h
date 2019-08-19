@@ -60,6 +60,6 @@ private:
 	int gap = 200;
 
 	int gameSpeed = 0;
-	int gameSpeedMax = 5;
+	int gameSpeedMax = 1;
 	/********************************/
 };

@@ -2745,13 +2745,20 @@ void Bird::Move()
 {
 	if(GetAsyncKeyState(VK_SPACE))
 	{
-			y -= 3;
+		if (inhibit)
+		{}
+		else
+		{
+			y -= 45;
 			vy = 2;
+			inhibit = true;
+		}
 	}
 	else
 	{
 		vy += vy*0.06;
 		y += vy;
+		inhibit = false;
 	}
 }
 
