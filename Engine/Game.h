@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Bird.h"
 
 class Game
 {
@@ -42,5 +43,9 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Bird bird;
+
+	int gameSpeed = 0;
+	int gameSpeedMax = 5;
 	/********************************/
 };

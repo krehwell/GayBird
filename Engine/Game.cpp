@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	bird(180, 300)
 {
 }
 
@@ -38,8 +39,19 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (gameSpeed > gameSpeedMax)
+	{
+		gameSpeed = 0;
+		bird.Move();
+		bird.ClampToScreen();
+	}
+	else
+	{
+		gameSpeed++;
+	}
 }
 
 void Game::ComposeFrame()
 {
+	bird.DrawBird(gfx);
 }
