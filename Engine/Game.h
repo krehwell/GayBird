@@ -48,18 +48,18 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	std::random_device rd;
-	std::mt19937 rng;
+	//std::random_device rd;
+	//std::mt19937 rng;
 	std::uniform_int_distribution<int> yDist;
 
 	Bird bird;
 	Block blockUp;
 	Block blockDown;
-	Block block1Up;
-	Block block1Down;
 	int gap = 200;
 
 	int gameSpeed = 0;
 	int gameSpeedMax = 1;
+
+	bool block1Allow = false;
 	/********************************/
 };

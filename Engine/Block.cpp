@@ -49,7 +49,8 @@ void Block::BlockClamp()
 	{
 		width = initWidth;
 		x = Graphics::ScreenWidth;
-		//Block::~Block();
+		Block::~Block();
+		//regenerate = true;
 	}
 }
 
@@ -68,6 +69,11 @@ bool Block::CollusionDetect(Bird bird)
 bool Block::GetRegenerate()
 {
 	return regenerate;
+}
+
+void Block::DeniedRegenerate()
+{
+	regenerate = false;
 }
 
 int Block::getBlockWidth()

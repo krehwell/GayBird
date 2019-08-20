@@ -2746,7 +2746,10 @@ void Bird::Move()
 	if(GetAsyncKeyState(VK_SPACE))
 	{
 		if (inhibit)
-		{}
+		{
+			vy += vy * 0.06;
+			y += vy;
+		}
 		else
 		{
 			y -= 45;

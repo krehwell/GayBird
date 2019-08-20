@@ -13,6 +13,7 @@ public:
 	void BlockClamp();
 	bool CollusionDetect(Bird bird);
 	bool GetRegenerate();
+	void DeniedRegenerate();
 	int getBlockWidth();
 	int GetX();
 

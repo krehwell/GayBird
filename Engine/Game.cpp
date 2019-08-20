@@ -26,8 +26,7 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	bird(200, 300),
-	rng(rd()),
-	yDist(60, 320)
+	yDist(20, 400)
 {
 	CallBlock();
 }
@@ -42,32 +41,41 @@ void Game::Go()
 
 void Game::CallBlock()
 {
-	int firstInitY = yDist(rng);
+	std::random_device rds;
+	std::mt19937 rngs(rds());
+	int firstInitY = yDist(rngs);
 	blockUp.InitBlock(firstInitY);
 	blockDown.InitBlock(firstInitY + gap);
+
+	blockUp.DeniedRegenerate();
+	blockDown.DeniedRegenerate();
 }
 
 void Game::UpdateModel()
 {
 	//if (gameSpeed > gameSpeedMax)
 	//{
-		if (!blockUp.CollusionDetect(bird) && !blockDown.CollusionDetect(bird))
+	if (!blockUp.CollusionDetect(bird) && !blockDown.CollusionDetect(bird))
+	{
+		gameSpeed = 0;
+		bird.Move();
+		bird.ClampToScreen();
+
+		if (!blockUp.GetRegenerate())
 		{
-			gameSpeed = 0;
-			bird.Move();
-			bird.ClampToScreen();
-			
-			if (!blockUp.GetRegenerate())
-			{
-				blockUp.MoveBlock();
-				blockUp.BlockClamp();
-			}
-			if (!blockDown.GetRegenerate())
-			{
-				blockDown.MoveBlock();
-				blockDown.BlockClamp();
-			}
+			blockUp.MoveBlock();
+			blockUp.BlockClamp();
 		}
+		if (!blockDown.GetRegenerate())
+		{
+			blockDown.MoveBlock();
+			blockDown.BlockClamp();
+		}
+		if (blockUp.GetRegenerate())
+		{
+			CallBlock();
+		}
+	}
 	//}
 	//else
 	//{
