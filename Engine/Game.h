@@ -35,7 +35,7 @@ public:
 	Game& operator=( const Game& ) = delete;
 	void Go();
 
-	void CallBlock();
+	void CallBlock(Block &blockCallUp, Block &blockCallDown);
 
 private:
 	void ComposeFrame();
@@ -55,11 +55,19 @@ private:
 	Bird bird;
 	Block blockUp;
 	Block blockDown;
+	
+	Block blockUp1;
+	Block blockDown1;
+
+	Block blockUp2;
+	Block blockDown2;
 	int gap = 200;
 
 	int gameSpeed = 0;
 	int gameSpeedMax = 1;
 
+	bool blockAllow = false;
 	bool block1Allow = false;
+	bool block2Allow = false;
 	/********************************/
 };
