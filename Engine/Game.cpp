@@ -28,9 +28,10 @@ Game::Game(MainWindow& wnd)
 	bird(200, 300),
 	yDist(20, 400)
 {
-	CallBlock(blockUp, blockDown);
-	CallBlock(blockUp1, blockDown1);
-	CallBlock(blockUp2, blockDown2);
+	for (int i = 0; i < amount; i++)
+	{
+		CallBlock(blockUp[i], blockDown[i]);
+	}
 }
 
 void Game::Go()
@@ -52,82 +53,72 @@ void Game::CallBlock(Block &blockCallUp, Block &blockCallDown)
 
 	blockCallUp.DeniedRegenerate();
 	blockCallDown.DeniedRegenerate();
+	//allow = true;
 }
 
 void Game::UpdateModel()
 {
 	//if (gameSpeed > gameSpeedMax)
 	//{
-	if (!blockUp.CollusionDetect(bird) && !blockDown.CollusionDetect(bird) && 
-		!blockUp1.CollusionDetect(bird) && !blockDown1.CollusionDetect(bird) &&
-		!blockUp2.CollusionDetect(bird) && !blockDown2.CollusionDetect(bird))
+	if (!gameOver)
 	{
-		gameSpeed = 0;
 		bird.Move();
 		bird.ClampToScreen();
-
-		if (!blockUp.GetRegenerate())
-		{
-			blockUp.MoveBlock();
-			blockUp.BlockClamp();
-		}
-		if (!blockDown.GetRegenerate())
-		{
-			blockDown.MoveBlock();
-			blockDown.BlockClamp();
-		}
-		if (blockUp.GetRegenerate())
-		{
-			CallBlock(blockUp, blockDown);
-		}
-
-		if (blockUp.GetX() <= 375)
-		{
-			block1Allow = true;
-		}
-
-		if (block1Allow == true)
-		{
-			if (!blockUp1.GetRegenerate())
-			{
-				blockUp1.MoveBlock();
-				blockUp1.BlockClamp();
-			}
-			if (!blockDown1.GetRegenerate())
-			{
-				blockDown1.MoveBlock();
-				blockDown1.BlockClamp();
-			}
-			if (blockUp1.GetRegenerate())
-			{
-				CallBlock(blockUp1, blockDown1);
-			}
-		}
-
-		if (blockUp1.GetX() <= 570)
-		{
-			block2Allow = true;
-		}
-
-		if (block2Allow == true)
-		{
-			if (!blockUp2.GetRegenerate())
-			{
-				blockUp2.MoveBlock();
-				blockUp2.BlockClamp();
-			}
-			if (!blockDown2.GetRegenerate())
-			{
-				blockDown2.MoveBlock();
-				blockDown2.BlockClamp();
-			}
-			if (blockUp2.GetRegenerate())
-			{
-				CallBlock(blockUp2, blockDown2);
-			}
-		}
-
 	}
+
+	for (int i = 0; i < amount; i++)
+	{
+		if (!blockUp[i].CollusionDetect(bird) && !blockDown[i].CollusionDetect(bird) && !gameOver)
+		{
+			gameSpeed = 0;
+
+			if (!blockUp[i].GetRegenerate() && blockAllow[i] == true)
+			{
+				blockUp[i].MoveBlock();
+				blockUp[i].BlockClamp();
+			}
+
+			if (!blockDown[i].GetRegenerate() && blockAllow[i] == true)
+			{
+				blockDown[i].MoveBlock();
+				blockDown[i].BlockClamp();
+			}
+
+		//	if (blockUp[i].GetRegenerate() && blockAllow[i] == true)
+		//	{
+		//		CallBlock(blockUp[i], blockDown[i]);
+		//	}
+
+			if (blockUp[i].GetX() <= blockGap && blockAllow[i] == true)
+			{
+				if (i == 2)
+				{
+					blockAllow[0] = true;
+					if (blockUp[0].GetRegenerate())
+					{
+						CallBlock(blockUp[0], blockDown[0]);
+					}
+				}
+				else
+				{
+					blockAllow[i+1] = true;
+					if (blockUp[i+1].GetRegenerate())
+					{
+						CallBlock(blockUp[i+1], blockDown[i+1]);
+					}
+				}
+			}
+
+			if (blockUp[i].getBlockWidth() <= 0)
+			{
+				blockAllow[i] = false;
+			}
+		}
+		else
+		{
+			gameOver = true;
+		}
+	}	
 	//}
 	//else
 	//{
@@ -138,19 +129,14 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	bird.DrawBird(gfx);
-	blockUp.DrawBlockUp(gfx);
-	blockDown.DrawBlockDown(gfx);
 
-	if (block1Allow == true)
+	for (int i = 0; i < amount; i++)
 	{
-   		blockUp1.DrawBlockUp(gfx);
-		blockDown1.DrawBlockDown(gfx);
-	}
-
-	if (block2Allow == true)
-	{
-		blockUp2.DrawBlockUp(gfx);
-		blockDown2.DrawBlockDown(gfx);
+		if (blockAllow[i] == true)
+		{
+			blockUp[i].DrawBlockUp(gfx);
+			blockDown[i].DrawBlockDown(gfx);
+		}
 	}
 	//gfx.DrawRect(50, firstInitY, 140, Graphics::ScreenHeight, Colors::Gray);
 }

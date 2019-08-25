@@ -52,22 +52,22 @@ private:
 	//std::mt19937 rng;
 	std::uniform_int_distribution<int> yDist;
 
-	Bird bird;
-	Block blockUp;
-	Block blockDown;
-	
-	Block blockUp1;
-	Block blockDown1;
+	static constexpr int amount = 3;
 
-	Block blockUp2;
-	Block blockDown2;
+	Bird bird;
+	Block blockUp[amount];
+	Block blockDown[amount];
+
+	bool blockAllow[amount] = {true, false, false};
+
+	static constexpr int blockGap = 400;
+	
 	int gap = 200;
 
 	int gameSpeed = 0;
 	int gameSpeedMax = 1;
 
-	bool blockAllow = false;
-	bool block1Allow = false;
-	bool block2Allow = false;
+	bool gameOver = false;
+
 	/********************************/
 };
