@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Media">
+      <UniqueIdentifier>{f3b8e3c4-e9d3-4eea-9273-da786478520c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -57,6 +60,12 @@
     <ClInclude Include="FrameTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -89,6 +98,9 @@
     <ClCompile Include="FrameTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
@@ -107,5 +119,25 @@
     <Image Include="Chili.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="jump.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="Vega.mp3">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="gameoy.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="fart0.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="fart1.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="fart2.wav">
+      <Filter>Media</Filter>
+    </Media>
   </ItemGroup>
 </Project>

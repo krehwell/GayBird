@@ -12,7 +12,8 @@ public:
 	int BirdXSize();
 	int BirdYSize();
 	int GetBirdX();
-	int GetBirdY();
+	float GetBirdY();
+	bool isJumped();
 private:
 	int x;
 	float y;
@@ -21,4 +22,5 @@ private:
 	float vy = 1;
 	bool enable = false;
 	bool inhibit = false;
+	bool soundPlay = false;
 };

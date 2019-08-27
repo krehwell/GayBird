@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Bird.h"
 #include "Block.h"
+#include "Sound.h"
 #include <random>
 
 class Game
@@ -68,6 +69,8 @@ private:
 	int gameSpeedMax = 1;
 
 	bool gameOver = false;
+
+	Sound jump;
 
 	/********************************/
 };

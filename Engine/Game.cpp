@@ -26,7 +26,8 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	bird(200, 300),
-	yDist(20, 400)
+	yDist(20, 400),
+	jump(L"fart2.wav")
 {
 	for (int i = 0; i < amount; i++)
 	{
@@ -43,7 +44,7 @@ void Game::Go()
 }
 
 void Game::CallBlock(Block &blockCallUp, Block &blockCallDown)
-{
+{	
 	std::random_device rds;
 	std::mt19937 rngs(rds());
 	//std::uniform_int_distribution<int> yDists(1, 400);
@@ -62,12 +63,22 @@ void Game::UpdateModel()
 	//{
 	if (!gameOver)
 	{
+		std::uniform_real_distribution<float> soundDist(0.7f, 1.0f);
+		std::random_device rd;
+		std::mt19937 rds(rd());
+		soundDist(rds);
 		bird.Move();
 		bird.ClampToScreen();
+		if (bird.isJumped())
+		{
+			jump.Play(soundDist(rds) , soundDist(rds));
+			
+		}
 	}
 
 	for (int i = 0; i < amount; i++)
 	{
+		
 		if (!blockUp[i].CollusionDetect(bird) && !blockDown[i].CollusionDetect(bird) && !gameOver)
 		{
 			gameSpeed = 0;
