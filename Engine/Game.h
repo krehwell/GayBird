@@ -52,7 +52,7 @@ private:
 	//std::mt19937 rng;
 	std::uniform_int_distribution<int> yDist;
 
-	static constexpr int amount = 3;
+	static constexpr int amount = 4;
 
 	Bird bird;
 	Block blockUp[amount];
@@ -60,7 +60,7 @@ private:
 
 	bool blockAllow[amount] = {true, false, false};
 
-	static constexpr int blockGap = 400;
+	static constexpr int blockGap = 525;
 	
 	int gap = 200;
 

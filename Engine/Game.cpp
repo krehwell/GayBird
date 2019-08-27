@@ -91,7 +91,7 @@ void Game::UpdateModel()
 
 			if (blockUp[i].GetX() <= blockGap && blockAllow[i] == true)
 			{
-				if (i == 2)
+				if (i == amount - 1)
 				{
 					blockAllow[0] = true;
 					if (blockUp[0].GetRegenerate())
