@@ -26,7 +26,7 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	bird(200.0f, 300.0f),
-	yDist(20, 400),
+	yDist(20.0f, 400.0f),
 	jump(L"fart2.wav")
 {
 	blockAllow[0] = { true };
@@ -49,7 +49,7 @@ void Game::CallBlock(Block &blockCallUp, Block &blockCallDown)
 	std::random_device rds;
 	std::mt19937 rngs(rds());
 	//std::uniform_int_distribution<int> yDists(1, 400);
-	int firstInitY = yDist(rngs);
+	float firstInitY = yDist(rngs);
 	blockCallUp.InitBlock(firstInitY);
 	blockCallDown.InitBlock(firstInitY + gap);
 

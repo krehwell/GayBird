@@ -6,7 +6,7 @@
 class Block
 {
 public:
-	void InitBlock(int _height);
+	void InitBlock(float _height);
 	void DrawBlockUp(Graphics& gfx);
 	void DrawBlockDown(Graphics& gfx);
 	void MoveBlock();
@@ -14,18 +14,18 @@ public:
 	bool CollusionDetect(Bird bird);
 	bool GetRegenerate();
 	void DeniedRegenerate();
-	int getBlockWidth();
-	int GetX();
+	float getBlockWidth();
+	float GetX();
 
 	~Block();
 private:
-	int x = Graphics::ScreenWidth;
-	int y = 0;
-	int height;
-	int blockMove = 1;
-	int initWidth = 100;
-	int width = initWidth;
-	bool dead=false;
+	float x = Graphics::ScreenWidth;
+	float y = 0.0f;
+	float height;
+	float blockMove = 1.0f;
+	float initWidth = 100.0f;
+	float width = initWidth;
+	bool dead = false;
 	bool regenerate = false;
 };
 
