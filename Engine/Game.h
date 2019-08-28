@@ -59,9 +59,9 @@ private:
 	Block blockUp[amount];
 	Block blockDown[amount];
 
-	bool blockAllow[amount] = {true, false, false};
+	bool blockAllow[amount];
 
-	static constexpr int blockGap = 525;
+	static constexpr int blockGap = 512;
 	
 	int gap = 200;
 

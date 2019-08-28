@@ -29,6 +29,7 @@ Game::Game(MainWindow& wnd)
 	yDist(20, 400),
 	jump(L"fart2.wav")
 {
+	blockAllow[0] = { true };
 	for (int i = 0; i < amount; i++)
 	{
 		CallBlock(blockUp[i], blockDown[i]);
