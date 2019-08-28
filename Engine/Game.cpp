@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	bird(200, 300),
+	bird(200.0f, 300.0f),
 	yDist(20, 400),
 	jump(L"fart2.wav")
 {
