@@ -9,7 +9,7 @@ public:
 	Vec2 operator*(float rhs);
 	Vec2& operator*=(float rhs);
 
-private:
+public:
 	float x;
 	float y;
 };

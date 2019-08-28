@@ -65,9 +65,9 @@ bool Block::CollusionDetect(Bird bird)
 
 	return
 		bird.BirdXSize() >= x &&
-		bird.GetBirdX()  <  blockWidth &&
+		bird.GetBirdPos().x  <  blockWidth &&
 		bird.BirdYSize() >= y &&
-		bird.GetBirdY()  <  blockHeight;
+		bird.GetBirdPos().y  <  blockHeight;
 }
 
 bool Block::GetRegenerate()

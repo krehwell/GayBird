@@ -27,6 +27,7 @@
 #include "Block.h"
 #include "Sound.h"
 #include "FrameTimer.h"
+#include "Vec2.h"
 #include <random>
 
 class Game

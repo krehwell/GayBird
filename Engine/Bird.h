@@ -1,22 +1,21 @@
 #pragma once
 #include "Graphics.h"
 #include "Keyboard.h"
+#include "Vec2.h"
 
 class Bird
 {
 public:
-	Bird(float _x, float _y);
+	Bird(Vec2& pos_in);
 	void DrawBird(Graphics& gfx);
 	void Move(float dt);
 	void ClampToScreen();
 	float BirdXSize();
 	float BirdYSize();
-	float GetBirdX();
-	float GetBirdY();
+	Vec2& GetBirdPos();
 	bool isJumped();
 private:
-	float x;
-	float y;
+	Vec2 pos;
 	static constexpr float width = 70.0f;
 	static constexpr float height = 53.0f;
 	float vy = 1.0f;
