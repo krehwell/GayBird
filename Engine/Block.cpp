@@ -12,11 +12,11 @@ void Block::DrawBlockUp(Graphics & gfx)
 	if (x + width > Graphics::ScreenWidth)
 	{
 		int widthTemp = Graphics::ScreenWidth;
-		gfx.DrawRect(x_int, y_int, widthTemp, height, Colors::Green);
+		gfx.DrawRect(x_int, y_int, (int)widthTemp, (int)height, Colors::Green);
 	}
 	else
 	{
-		gfx.DrawRectDim(x_int, y_int, width, height, Colors::Green);
+		gfx.DrawRectDim(x_int, y_int, (int)width, (int)height, Colors::Green);
 	}
 }
 
@@ -29,25 +29,25 @@ void Block::DrawBlockDown(Graphics & gfx)
 	if (x + width > Graphics::ScreenWidth)
 	{
 		int widthTemp = Graphics::ScreenWidth;
-		gfx.DrawRect(x_int, y_int, widthTemp, Graphics::ScreenHeight, Colors::Green);
+		gfx.DrawRect(x_int, y_int, (int)widthTemp, Graphics::ScreenHeight, Colors::Green);
 	}
 	else
 	{
-		gfx.DrawRect(x_int, y_int, x+width, Graphics::ScreenHeight, Colors::Green);
+		gfx.DrawRect(x_int, y_int, (int)x+(int)width, Graphics::ScreenHeight, Colors::Green);
 	}
 }
 
-void Block::MoveBlock()
+void Block::MoveBlock(float dt)
 {
-	x -= blockMove;
+	x -= blockMove * dt;
 }
 
-void Block::BlockClamp()
+void Block::BlockClamp(float dt)
 {
 	if (x <= 0.0f)
 	{
 		x = 0.0f;
-		width -= blockMove;
+		width -= blockMove * dt;
 	}
 	if (width <= 0.0f)
 	{
@@ -60,8 +60,8 @@ void Block::BlockClamp()
 
 bool Block::CollusionDetect(Bird bird)
 {
-	int blockHeight = y + height;
-	int blockWidth = x + width;
+	float blockHeight = y + height;
+	float blockWidth = x + width;
 
 	return
 		bird.BirdXSize() >= x &&

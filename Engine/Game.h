@@ -26,6 +26,7 @@
 #include "Bird.h"
 #include "Block.h"
 #include "Sound.h"
+#include "FrameTimer.h"
 #include <random>
 
 class Game
@@ -71,6 +72,8 @@ private:
 	bool gameOver = false;
 
 	Sound jump;
+
+	FrameTimer ft;
 
 	/********************************/
 };

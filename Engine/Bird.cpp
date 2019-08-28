@@ -2741,28 +2741,28 @@ void Bird::DrawBird(Graphics& gfx)
 
 }
 
-void Bird::Move()
+void Bird::Move(float dt)
 {
 	if(GetAsyncKeyState(VK_SPACE))
 	{
 		if (inhibit)
 		{
 			vy += vy * 0.06f;
-			y += vy;
+			y += vy * dt * 60.0f;
 			soundPlay = false;
 		}
 		else
 		{
-			y -= 45;
-			vy = 2;
+			y -= 45 * dt * 60.0f;
+			vy = 2.0f;
 			inhibit = true;
 			soundPlay = true;
 		}
 	}
 	else
 	{
-		vy += vy*0.06f;
-		y += vy;
+		vy += vy * 0.06f;
+		y += vy * dt * 60.0f;
 		inhibit = false;
 		soundPlay = false;
 	}

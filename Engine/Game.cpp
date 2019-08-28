@@ -60,6 +60,7 @@ void Game::CallBlock(Block &blockCallUp, Block &blockCallDown)
 
 void Game::UpdateModel()
 {
+	float dt = ft.Mark();
 	//if (gameSpeed > gameSpeedMax)
 	//{
 	if (!gameOver)
@@ -68,7 +69,7 @@ void Game::UpdateModel()
 		std::random_device rd;
 		std::mt19937 rds(rd());
 		soundDist(rds);
-		bird.Move();
+		bird.Move(dt);
 		bird.ClampToScreen();
 		if (bird.isJumped())
 		{
@@ -86,14 +87,14 @@ void Game::UpdateModel()
 
 			if (!blockUp[i].GetRegenerate() && blockAllow[i] == true)
 			{
-				blockUp[i].MoveBlock();
-				blockUp[i].BlockClamp();
+				blockUp[i].MoveBlock(dt);
+				blockUp[i].BlockClamp(dt);
 			}
 
 			if (!blockDown[i].GetRegenerate() && blockAllow[i] == true)
 			{
-				blockDown[i].MoveBlock();
-				blockDown[i].BlockClamp();
+				blockDown[i].MoveBlock(dt);
+				blockDown[i].BlockClamp(dt);
 			}
 
 		//	if (blockUp[i].GetRegenerate() && blockAllow[i] == true)

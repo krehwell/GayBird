@@ -7,7 +7,7 @@ class Bird
 public:
 	Bird(float _x, float _y);
 	void DrawBird(Graphics& gfx);
-	void Move();
+	void Move(float dt);
 	void ClampToScreen();
 	float BirdXSize();
 	float BirdYSize();
