@@ -12,4 +12,4 @@ The game just to clone the flappy bird made using `c++` and `chilliengine`
 all of them are made manually from bird, pipes, the codes, etc. (it has sound too)
 - the bird is drawn pixel per pixel one by one selectively until it draws a bird.
 - the pipe is just rect defined, and spawn procedurally.
-- assholes
+- the guy who made this is handsome
